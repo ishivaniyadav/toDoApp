@@ -1,82 +1,70 @@
-const addBtn = document.querySelector("#add-btn");
-const newTaskInput = document.querySelector("#wrapper input");
-const tasksContainer = document.querySelector("#tasks");
-const error = document.getElementById("error");
-const countValue = document.querySelector(".count-value");
-let taskCount = 0;
-const displayCount = (taskCount) => {
-  countValue.innerText = taskCount;
-};
+const input = document.querySelector('#todo-input');
+const addBtn = document.querySelector('#submit');
+const list = document.querySelector('.todo-lists');
 
-const addTask = () => {
-  const taskName = newTaskInput.value.trim();
-  error.style.display = "none";
-  if (!taskName) {
-    setTimeout(() => {
-      error.style.display = "block";
-    }, 200);
+addBtn.addEventListener('click', () => {
+  const task = input.value.trim();
+  if (!task) {
+    alert("Please enter a task.");
     return;
   }
-  const task = `<div class ="task"> <input type="checkbox" class="task-check">
-      <span class="taskName">${taskName}</span>
-      <button class="edit">
-      <i class="fa-solid fa-pen-to-square"></i>
-      </button>
-      <button class="delete">
-      <i class="fa-solid fa-trash-can"></i>
-      </button>
-      </div>`;
 
-  tasksContainer.insertAdjacentHTML("beforeend", task);
+  input.value = "";
 
-  const deleteButtons = document.querySelectorAll(".delete");
+  const item = document.createElement('div');
+  item.classList.add('todo-item');
 
-  deleteButtons.forEach((button) => {
-    button.onclick = () => {
-      button.parentNode.remove();
-      taskCount  -= 1;
-      displayCount(taskCount);
-    };
+  const textBox = document.createElement('input');
+  textBox.type = 'text';
+  textBox.value = task;
+  textBox.setAttribute('readonly', 'readonly');
+  textBox.classList.add('text');
+
+  const btns = document.createElement('div');
+  btns.classList.add('action-items');
+
+  const doneBtn = document.createElement('i');
+  doneBtn.classList.add('fa-solid', 'fa-check', 'done-btn');
+
+  const editBtn = document.createElement('i');
+  editBtn.classList.add('fa-solid', 'fa-pen-to-square', 'edit-btn');
+
+  const delBtn = document.createElement('i');
+  delBtn.classList.add('fa-solid', 'fa-trash', 'del-btn');
+
+  btns.appendChild(doneBtn);
+  btns.appendChild(editBtn);
+  btns.appendChild(delBtn);
+
+  item.appendChild(textBox);
+  item.appendChild(btns);
+  list.appendChild(item);
+
+  doneBtn.addEventListener('click', () => {
+    if (textBox.classList.contains('done')) {
+      textBox.classList.remove('done');
+      list.insertBefore(item, list.firstChild); 
+      doneBtn.classList.replace('fa-rotate-left', 'fa-check');
+    } else {
+      textBox.classList.add('done');
+      list.appendChild(item); 
+      doneBtn.classList.replace('fa-check', 'fa-rotate-left');
+    }
+  });
+  editBtn.addEventListener('click', () => {
+    if (editBtn.classList.contains('edit-btn')) {
+      editBtn.classList.remove('edit-btn', 'fa-pen-to-square');
+      editBtn.classList.add('fa-x', 'save-btn');
+      textBox.removeAttribute('readonly');
+      textBox.focus();
+    } else {
+      editBtn.classList.remove('save-btn', 'fa-x');
+      editBtn.classList.add('edit-btn', 'fa-pen-to-square');
+      textBox.setAttribute('readonly', 'readonly');
+    }
   });
 
-  const editButtons = document.querySelectorAll(".edit");
-  editButtons.forEach((editBtn) => {
-    editBtn.onclick = (e) => {
-      let targetElement = e.target;
-      if (!(e.target.className == "edit")) {
-        targetElement = e.target.parentElement;
-      }
-      newTaskInput.value = targetElement.previousElementSibling?.innerText;
-      targetElement.parentNode.remove();
-      displayCount(taskCount);
-    };
+  delBtn.addEventListener('click', () => {
+    list.removeChild(item);
   });
-  const tasksCheck=document.querySelectorAll(".task-check");
-  tasksCheck.forEach((checkBox)=>
-  {
-    checkBox.onchange =() =>{
-        checkBox.nextElementSibling.classList.toggle("completed");
-        if(checkBox.checked)
-        {
-            taskCount -= 1;
-        }
-        else {
-            taskCount += 1;
-        }
-       
-        displayCount(taskCount);
-    
-    };
-  });
-  taskCount += 1;
-  displayCount(taskCount);
-  newTaskInput.value= "";
-  
-};
-addBtn.addEventListener("click",addTask);
-window.onload = () =>
-{
-    taskCount =0;
-    displayCount(taskCount);
-    newTaskInput.value ="";
-}
+});
