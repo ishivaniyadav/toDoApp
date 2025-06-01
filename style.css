@@ -1,0 +1,184 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  background: #f2f5f9;
+  color: #333;
+  min-height: 100vh;
+}
+
+.main-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  min-height: 100vh;
+}
+
+.container {
+  width: 100%;
+  max-width: 700px;
+}
+
+.wrapper {
+  background-color: #fff;
+  padding: 40px;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+.heading h1 {
+  text-align: center;
+  color: #01a325;
+  font-size: 36px;
+  margin-bottom: 30px;
+  font-weight: 600;
+}
+
+.input-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 30px;
+}
+
+.input-wrapper input {
+  flex: 1;
+  min-width: 260px;
+  padding: 14px 18px;
+  border: 2px solid #d3d3f5;
+  border-radius: 10px;
+  font-size: 16px;
+  color: #333;
+  background-color: #f8f8ff;
+  transition: border-color 0.3s ease;
+}
+
+.input-wrapper input:focus {
+  outline: none;
+  border-color: #01a325;
+  background-color: #fff;
+}
+
+.input-wrapper button {
+  padding: 14px 26px;
+  background: #01a325;
+  color: white;
+  font-weight: 600;
+  font-size: 16px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.input-wrapper button:hover {
+  background: #01811d;
+}
+
+.todo-lists {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.todo-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 18px;
+  background-color: #fdfdff;
+  border: 1px solid #e0e0f5;
+  border-radius: 14px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+}
+
+.todo-item input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  font-size: 16px;
+  color: #333;
+}
+
+.todo-item input:focus {
+  outline: none;
+}
+
+/* Action Buttons */
+.todo-item i {
+  margin-left: 10px;
+  font-size: 16px;
+  padding: 8px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+/* Done (Green) */
+.todo-item .done-btn {
+  background-color: #eafaf1;
+  color: #27ae60;
+}
+.todo-item .done-btn:hover {
+  background-color: #27ae60;
+  color: #fff;
+  transform: scale(1.15);
+}
+
+/* Save (Yellow) */
+.todo-item .save-btn {
+  background-color: #fff9e6;
+  color: #f1c40f;
+}
+.todo-item .save-btn:hover {
+  background-color: #f1c40f;
+  color: #fff;
+  transform: scale(1.15);
+}
+
+/* Edit (Orange) */
+.todo-item .edit-btn {
+  background-color: #fff4e6;
+  color: #e67e22;
+}
+.todo-item .edit-btn:hover {
+  background-color: #e67e22;
+  color: #fff;
+  transform: scale(1.15);
+}
+
+/* Delete (Red) */
+.todo-item .del-btn {
+  background-color: #fdecea;
+  color: #e74c3c;
+}
+.todo-item .del-btn:hover {
+  background-color: #e74c3c;
+  color: #fff;
+  transform: scale(1.15);
+}
+
+/* Completed Task */
+.done {
+  text-decoration: line-through;
+  opacity: 0.6;
+}
+
+/* Mobile Responsive */
+@media (max-width: 600px) {
+  .input-wrapper {
+    flex-direction: column;
+  }
+
+  .input-wrapper input,
+  .input-wrapper button {
+    width: 100%;
+  }
+}
