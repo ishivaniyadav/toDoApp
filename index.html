@@ -1,71 +1,83 @@
-<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <link rel="stylesheet" href="style.css">
-  <script src="https://kit.fontawesome.com/d5f22ee4f8.js" crossorigin="anonymous"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>To-Do List App</title>
+<link rel="stylesheet" href="ToDoList.css">
 </head>
-
-<body>
-  <div class="main-container">
-    <div class="container">
-      <div class="heading">
-        <h1>Todo App</h1>
-      </div>
-      <div class="wrapper">
-        <div class="input-wrapper">
-          <input type="text" id="todo-input">
-          <button id="submit">Add</button>
-        </div>
-        <div class="todo-lists">
-
-        </div>
-      </div>
+<body style="background-image: url('ToDoListBg.png');">
+<div class="container">
+  <div class="tabs">
+    <button class="tab active" id="getStartedTab" onclick="openTab('getStarted')">Get Started</button>
+    <button class="tab" id="manageTasksTab" style="display: none;" onclick="openTab('manageTasks')">Manage Your Tasks</button>
+  </div>
+  <div class="tab-content" id="getStarted">
+    <div class="content">
+      <h1>Welcome to the To-Do List App!</h1>
+      <h2>Manage your everyday tasks</h2>
+      <p>Click on the "Manage Your Tasks" tab to continue</p>
+      <button id="manageTasksBtn" onclick="openTab('manageTasks')">Manage Your Tasks</button>
     </div>
   </div>
-</body>
-
-<script src="script.js"></script>
-
-</html>
-=======
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <script src="https://kit.fontawesome.com/d5f22ee4f8.js" crossorigin="anonymous"></script>
-</head>
-
-<body>
-  <div class="main-container">
-    <div class="container">
-      <div class="wrapper">
-        <div class="heading">
-          <h1>To-do App</h1>
-        </div>
-        <div class="input-wrapper">
-          <input type="text" id="todo-input">
-          <button id="submit">Add</button>
-        </div>
-        <div class="todo-lists">
-        </div>
+  <div class="tab-content" id="manageTasks">
+    <div class="content">
+      <h2><b>Task List</b></h2>
+      <div id="tasks">
       </div>
+      <button id="addTaskBtn">Add Task</button>
     </div>
   </div>
+</div>
+
+<div id="addTaskForm" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal('addTaskForm')">&times;</span>
+      <h2>Add New Task</h2>
+      <form id="taskForm">
+        <label for="title">Title:</label>
+        <input type="text" id="title" name="title" required><br>
+        <label for="description">Description:</label>
+        <textarea id="description" name="description"></textarea><br>
+        <label for="priority">Priority:</label>
+        <select id="priority" name="priority">
+          <option value="Low">Low</option>
+          <option value="Medium">Medium</option>
+          <option value="High">High</option>
+        </select><br>
+        <label for="dueDate">Due Date:</label>
+        <input type="date" id="dueDate" name="dueDate"><br>
+        <label for="time">Time:</label>
+        <input type="time" id="time" name="time"><br>
+        <button type="button" onclick="addTask()">Add Task</button>
+      </form>
+    </div>
+  </div>
+  
+  <div id="editTaskForm" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal('editTaskForm')">&times;</span>
+      <h2>Edit Task</h2>
+      <form id="editTaskForm">
+        <label for="editTitle">Title:</label>
+        <input type="text" id="editTitle" name="editTitle" required><br>
+        <label for="editDescription">Description:</label>
+        <textarea id="editDescription" name="editDescription"></textarea><br>
+        <label for="editPriority">Priority:</label>
+        <select id="editPriority" name="editPriority">
+          <option value="Low">Low</option>
+          <option value="Medium">Medium</option>
+          <option value="High">High</option>
+        </select><br>
+        <label for="editDueDate">Due Date:</label>
+        <input type="date" id="editDueDate" name="editDueDate"><br>
+        <label for="editTime">Time:</label>
+        <input type="time" id="editTime" name="editTime"><br>
+        <button type="button" id="saveChangesBtn">Save Changes</button>
+      </form>
+    </div>
+  </div>
+
+<script src="ToDoList.js"></script>
 </body>
-
-<script src="script.js"></script>
-
 </html>
->>>>>>> 39a0fd6 (Initial commit on main branch)
